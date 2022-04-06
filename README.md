@@ -14,8 +14,6 @@
 
 :eight_spoked_asterisk:	 Уведомления в Telegram с использованием бота
 
-:eight_spoked_asterisk:	 Пример запуска теста в Selenoid
-
 <h2>:eyes:	 Реализованные проверки</h2>
 
 :black_medium_square: Получение авторизационного токена
@@ -105,12 +103,4 @@
 </br>
 </br>
 <img title="Telegram notification" src="images/screenshots/Telegram_message.jpg">
-</p>
-
-
-<h2>:cinema:	 Пример запуска теста в Selenoid</h2>
-<p><i>К каждому тесту в отчете прилагается видео: </i>
-</br>
-</br>
-<img title="Selenoid" src="images/screenshots/Selenoid.gif">
 </p>
