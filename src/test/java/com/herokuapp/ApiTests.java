@@ -35,7 +35,7 @@ public class ApiTests {
                         .spec(responseSpec)
                         .log().body()
                         .log().status()
-                        .body("token", notNullValue())
+                        .body("tokenf", notNullValue())
                         .extract().response();
 
         authToken = response.path("token");
