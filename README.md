@@ -1,6 +1,6 @@
-<h1>Проект по тестированию главной страницы интернет-магазина "Ситилинк".</h1>
+<h1>Проект по тестированию API сайта restful-booker.</h1>
 
-<a target="_blank" href="https://www.citilink.ru/">Ссылка на сайт магазина</a>
+<a target="_blank" href="http://restful-booker.herokuapp.com/">Ссылка на сайт</a>
 
 <h2>:bookmark_tabs: Содержание</h2>
 
@@ -35,8 +35,7 @@
 <img title="Java" src="images/logo/Java.svg" height="48" width="48">
 <img title="Gradle" src="images/logo/Gradle.svg" height="48" width="48">
 <img title="JUnit5" src="images/logo/JUnit5.svg" height="48" width="48">
-<img title="Selenide" src="images/logo/Selenide.svg" height="48" width="48">
-<img title="Selenoid" src="images/logo/Selenoid.svg" height="48" width="48">
+<img title="Rest assured" src="images/logo/Rest-Assured.png" height="48" width="48">
 <img title="Telegram" src="images/logo/Telegram.svg" height="48" width="48">
 <img title="Jenkins" src="images/logo/Jenkins.svg" height="48" width="48"> 
 <img title="Allure TestOps" src="images/logo/Allure_TestOps.png" height="48" width="48">
