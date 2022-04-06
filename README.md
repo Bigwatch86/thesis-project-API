@@ -42,7 +42,7 @@
 <h2>:arrow_forward:	 Запуск тестов в Jenkins</h2>
 <p>Для запуска тестов используется инструмент CI/CD под названием <b>Jenkins</b></p>
 
-<a target="_blank" href="https://jenkins.autotests.cloud/job/010-Bigwatch-thesis-project-UI/">Ссылка на задачу для запуска тестов</a>
+<a target="_blank" href="https://jenkins.autotests.cloud/job/010-Bigwatch-thesis-project-API/">Ссылка на задачу для запуска тестов</a>
 
 <p><i>Параметры сборки выбираются при запуске задачи:<b></i>
 </br>
