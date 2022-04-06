@@ -1,6 +1,6 @@
-<h1>Проект по тестированию главной страницы интернет-магазина "Ситилинк".</h1>
+<h1>Проект по тестированию API сайта restful-booker.</h1>
 
-<a target="_blank" href="https://www.citilink.ru/">Ссылка на сайт магазина</a>
+<a target="_blank" href="http://restful-booker.herokuapp.com/">Ссылка на сайт</a>
 
 <h2>:bookmark_tabs: Содержание</h2>
 
@@ -14,17 +14,13 @@
 
 :eight_spoked_asterisk:	 Уведомления в Telegram с использованием бота
 
-:eight_spoked_asterisk:	 Пример запуска теста в Selenoid
-
 <h2>:eyes:	 Реализованные проверки</h2>
 
-:black_medium_square: Проверка загрузки заголовка и его содержимого
+:black_medium_square: Получение авторизационного токена
 
-:black_medium_square: Проверка загрузки нижнего колонтитула
+:black_medium_square: Получение списка всех бронирований
 
-:black_medium_square: Проверка наличия каталога товаров
-
-:black_medium_square: Проверка работы поиска в каталоге товаров
+:black_medium_square: Создание, изменение и удаление бронирования
 
 <h2>:books:	 Стек технологий</h2>
 
@@ -35,8 +31,7 @@
 <img title="Java" src="images/logo/Java.svg" height="48" width="48">
 <img title="Gradle" src="images/logo/Gradle.svg" height="48" width="48">
 <img title="JUnit5" src="images/logo/JUnit5.svg" height="48" width="48">
-<img title="Selenide" src="images/logo/Selenide.svg" height="48" width="48">
-<img title="Selenoid" src="images/logo/Selenoid.svg" height="48" width="48">
+<img title="Rest assured" src="images/logo/Rest-Assured.png" height="48" width="48">
 <img title="Telegram" src="images/logo/Telegram.svg" height="48" width="48">
 <img title="Jenkins" src="images/logo/Jenkins.svg" height="48" width="48"> 
 <img title="Allure TestOps" src="images/logo/Allure_TestOps.png" height="48" width="48">
@@ -47,14 +42,11 @@
 <h2>:arrow_forward:	 Запуск тестов в Jenkins</h2>
 <p>Для запуска тестов используется инструмент CI/CD под названием <b>Jenkins</b></p>
 
-<a target="_blank" href="https://jenkins.autotests.cloud/job/010-Bigwatch-thesis-project-UI/">Ссылка на задачу для запуска тестов</a>
+<a target="_blank" href="https://jenkins.autotests.cloud/job/010-Bigwatch-thesis-project-API/">Ссылка на задачу для запуска тестов</a>
 
 <p><i>Параметры сборки выбираются при запуске задачи:<b></i>
 </br>
-</br>
 
-<p><code>BROWSER</code> – браузер, в котором будут выполняться тесты.</p>
-<p><code>VERSION</code> – версия браузера, в которой будут выполняться тесты.</p>
 <p><code>COMMENT</code> – комментарий для сообщения в Телеграм.</p>
 <p><code>ENVIRONMENT</code> - среда, на которой прогоняются автотесты.</p>
 
@@ -110,12 +102,4 @@
 </br>
 </br>
 <img title="Telegram notification" src="images/screenshots/Telegram_message.jpg">
-</p>
-
-
-<h2>:cinema:	 Пример запуска теста в Selenoid</h2>
-<p><i>К каждому тесту в отчете прилагается видео: </i>
-</br>
-</br>
-<img title="Selenoid" src="images/screenshots/Selenoid.gif">
 </p>
