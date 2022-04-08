@@ -75,25 +75,25 @@
 <h4>:small_orange_diamond:	 Страница со списком всех пройденных проверок:</h4>
 
 <p align="center">
-<img title="Test results" src="images/screenshots/Allure_TestOps_1.jpg">
+<img title="Результаты тестирования" src="images/screenshots/Allure_TestOps_1.jpg">
 </p>
 
 <h4>:small_orange_diamond:	 Страница со всеми запусками:</h4>
 
 <p align="center">
-<img title="Allure Launches" src="images/screenshots/Allure_TestOps_2.jpg">
+<img title="Запуски" src="images/screenshots/Allure_TestOps_2.jpg">
 </p>
 
 <h4>:small_orange_diamond:	 Дефект, описанный в результате запуска тестов:</h4>
 
 <p align="center">
-<img title="Allure Defects" src="images/screenshots/Allure_TestOps_3.jpg">
+<img title="Деффекты" src="images/screenshots/Allure_TestOps_3.jpg">
 </p>
 
 <h4>:small_orange_diamond:	 Страница с общими результатами тестирования в графическом виде:</h4>
 
 <p align="center">
-<img title="Allure Dashboards" src="images/screenshots/Allure_TestOps_4.jpg">
+<img title="Доска с графической информацией" src="images/screenshots/Allure_TestOps_4.jpg">
 </p>
 
 
@@ -101,5 +101,5 @@
 <p><i>После окончания сборки в Телеграм отправляется уведомление со ссылкой на отчёт. </i>
 </br>
 </br>
-<img title="Telegram notification" src="images/screenshots/Telegram_message.jpg">
+<img title="Уведомление в Телеграм" src="images/screenshots/Telegram_message.jpg">
 </p>
