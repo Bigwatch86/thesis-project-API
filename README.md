@@ -34,8 +34,7 @@
 <img title="Rest assured" src="images/logo/Rest-Assured.png" height="48" width="48">
 <img title="Telegram" src="images/logo/Telegram.svg" height="48" width="48">
 <img title="Jenkins" src="images/logo/Jenkins.svg" height="48" width="48"> 
-<img title="Allure TestOps" src="images/logo/Allure_TestOps.png" height="48" width="48">
-<img title="Jira" src="images/logo/Jira.png" height="48" width="48"> 
+<img title="Allure TestOps" src="images/logo/Allure_TestOps.png" height="48" width="48"> 
 </p>
 
 
