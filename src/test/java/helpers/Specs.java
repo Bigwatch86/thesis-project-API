@@ -1,4 +1,4 @@
-package com.herokuapp;
+package helpers;
 
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;

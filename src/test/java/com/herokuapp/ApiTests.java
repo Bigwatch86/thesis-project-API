@@ -1,31 +1,32 @@
 package com.herokuapp;
 
-import com.herokuapp.lombok.User;
+import com.herokuapp.lombok.AuthToken;
+import com.herokuapp.lombok.Booking;
+import com.herokuapp.lombok.ResponseBooking;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
-import io.restassured.response.Response;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-import static com.herokuapp.Specs.requestSpec;
-import static com.herokuapp.Specs.responseSpec;
+import static helpers.Specs.requestSpec;
+import static helpers.Specs.responseSpec;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 @DisplayName("Тесты для проверки взаимодействия с API http://restful-booker.herokuapp.com/")
 public class ApiTests {
-    String authToken;
 
     @Test
     @Owner("igor.glazov")
     @Feature("Авторизация")
     @DisplayName("Получение токена")
     void createToken() {
+        String token;
         String data = "{ \"username\": \"admin\", " +
                 "\"password\": \"password123\" }";
-        Response response =
+        AuthToken authToken =
                 given()
                         .spec(requestSpec)
                         .body(data)
@@ -36,9 +37,8 @@ public class ApiTests {
                         .log().body()
                         .log().status()
                         .body("token", notNullValue())
-                        .extract().response();
-
-        authToken = response.path("token");
+                        .extract().as(AuthToken.class);
+        token = authToken.getToken();
     }
 
     @Test
@@ -61,10 +61,9 @@ public class ApiTests {
     @Feature("Бронирование")
     @DisplayName("Создание, изменение и удаление бронирования")
     void createUpdateGetBooking() {
-        String bookingId;
         String data = "{ \"username\": \"admin\", " +
                 "\"password\": \"password123\" }";
-        Response response =
+        AuthToken authToken =
                 given()
                         .spec(requestSpec)
                         .body(data)
@@ -72,11 +71,10 @@ public class ApiTests {
                         .post("/auth")
                         .then()
                         .spec(responseSpec)
+                        .log().body()
+                        .log().status()
                         .body("token", notNullValue())
-                        .extract().response();
-
-        authToken = response.path("token");
-        System.out.println("Токен равен: " + authToken);
+                        .extract().as(AuthToken.class);
 
         String data1 = "{ \"firstname\" : \"Ivan\",\n" +
                 "    \"lastname\" : \"Ivanov\",\n" +
@@ -87,7 +85,7 @@ public class ApiTests {
                 "        \"checkout\" : \"2022-04-19\"\n" +
                 "    },\n" + "    \"additionalneeds\" : \"Breakfast\"\n" +
                 "}";
-        Response response1 =
+        ResponseBooking responseBookingIvanov =
                 given()
                         .spec(requestSpec)
                         .body(data1)
@@ -97,23 +95,10 @@ public class ApiTests {
                         .spec(responseSpec)
                         .log().body()
                         .log().status()
-                        .body("booking.firstname", is("Ivan"))
-                        .body("booking.lastname", is("Ivanov"))
-                        .extract().response();
-//        User response1 =
-//                given()
-//                        .spec(requestSpec)
-//                        .body(data1)
-//                        .when()
-//                        .post("/booking")
-//                        .then()
-//                        .spec(responseSpec)
-//                        .log().body()
-//                        .log().status()
-//                        .extract().as(User.class);
-//        assertEquals("Ivan", response1.getFirstname());
-//        assertEquals("Ivanov", response1.getLastname());
-        bookingId = response1.path("bookingid").toString();
+                        .extract().as(ResponseBooking.class);
+        assertNotNull(responseBookingIvanov.getBookingid());
+        assertEquals("Ivan", responseBookingIvanov.getBooking().getFirstname());
+        assertEquals("Ivanov", responseBookingIvanov.getBooking().getLastname());
 
         String data2 = "{ \"firstname\" : \"Petr\",\n" +
                 "    \"lastname\" : \"Petrov\",\n" +
@@ -125,36 +110,38 @@ public class ApiTests {
                 "    },\n" + "    \"additionalneeds\" : \"Breakfast\"\n" +
                 "}";
 
-        given()
-                .spec(requestSpec)
-                .cookie("token", authToken)
-                .body(data2)
-                .when()
-                .put("/booking/" + bookingId)
-                .then()
-                .spec(responseSpec)
-                .log().body()
-                .log().status()
-                .body("firstname", is("Petr"))
-                .body("lastname", is("Petrov"));
+        Booking bookingPetrov =
+                given()
+                        .spec(requestSpec)
+                        .cookie("token", authToken.getToken())
+                        .body(data2)
+                        .when()
+                        .put("/booking/" + responseBookingIvanov.getBookingid())
+                        .then()
+                        .spec(responseSpec)
+                        .log().body()
+                        .log().status()
+                        .extract().as(Booking.class);
+        assertEquals("Petr", bookingPetrov.getFirstname());
+        assertEquals("Petrov", bookingPetrov.getLastname());
 
         given()
                 .spec(requestSpec)
-                .cookie("token", authToken)
+                .cookie("token", authToken.getToken())
                 .when()
-                .get("/booking/"+bookingId)
+                .get("/booking/"+responseBookingIvanov.getBookingid())
                 .then()
                 .spec(responseSpec)
                 .log().body()
-                .log().status()
-                .body("firstname", is("Petr"))
-                .body("lastname", is("Petrov"));
+                .log().status();
+        assertEquals("Petr", bookingPetrov.getFirstname());
+        assertEquals("Petrov", bookingPetrov.getLastname());
 
         given()
                 .spec(requestSpec)
-                .cookie("token", authToken)
+                .cookie("token", authToken.getToken())
                 .when()
-                .delete("/booking/"+bookingId)
+                .delete("/booking/"+responseBookingIvanov.getBookingid())
                 .then()
                 .log().body()
                 .log().status()
@@ -162,9 +149,9 @@ public class ApiTests {
 
         given()
                 .spec(requestSpec)
-                .cookie("token", authToken)
+                .cookie("token", authToken.getToken())
                 .when()
-                .get("/booking/"+bookingId)
+                .get("/booking/"+responseBookingIvanov.getBookingid())
                 .then()
                 .log().body()
                 .log().status()
