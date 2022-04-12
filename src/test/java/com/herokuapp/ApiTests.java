@@ -76,14 +76,14 @@ public class ApiTests {
                         .body("token", notNullValue())
                         .extract().as(AuthToken.class);
 
-        String data1 = "{ \"firstname\" : \"Ivan\",\n" +
-                "    \"lastname\" : \"Ivanov\",\n" +
-                "    \"totalprice\" : 666,\n" +
-                "    \"depositpaid\" : true,\n" +
-                "    \"bookingdates\" : {\n" +
-                "        \"checkin\" : \"2022-04-05\",\n" +
-                "        \"checkout\" : \"2022-04-19\"\n" +
-                "    },\n" + "    \"additionalneeds\" : \"Breakfast\"\n" +
+        String data1 = "{ \"firstname\" : \"Ivan\"," +
+                "    \"lastname\" : \"Ivanov\"," +
+                "    \"totalprice\" : 666," +
+                "    \"depositpaid\" : true," +
+                "    \"bookingdates\" : {" +
+                "        \"checkin\" : \"2022-04-05\"," +
+                "        \"checkout\" : \"2022-04-19\"" +
+                "    }," + "    \"additionalneeds\" : \"Breakfast\"" +
                 "}";
         ResponseBooking responseBookingIvanov =
                 given()
@@ -100,14 +100,14 @@ public class ApiTests {
         assertEquals("Ivan", responseBookingIvanov.getBooking().getFirstname());
         assertEquals("Ivanov", responseBookingIvanov.getBooking().getLastname());
 
-        String data2 = "{ \"firstname\" : \"Petr\",\n" +
-                "    \"lastname\" : \"Petrov\",\n" +
-                "    \"totalprice\" : 666,\n" +
-                "    \"depositpaid\" : true,\n" +
-                "    \"bookingdates\" : {\n" +
-                "        \"checkin\" : \"2022-04-05\",\n" +
-                "        \"checkout\" : \"2022-04-19\"\n" +
-                "    },\n" + "    \"additionalneeds\" : \"Breakfast\"\n" +
+        String data2 = "{ \"firstname\" : \"Petr\"," +
+                "    \"lastname\" : \"Petrov\"," +
+                "    \"totalprice\" : 666," +
+                "    \"depositpaid\" : true," +
+                "    \"bookingdates\" : {" +
+                "        \"checkin\" : \"2022-04-05\"," +
+                "        \"checkout\" : \"2022-04-19\"" +
+                "    }," + "    \"additionalneeds\" : \"Breakfast\"" +
                 "}";
 
         Booking bookingPetrov =
@@ -129,7 +129,7 @@ public class ApiTests {
                 .spec(requestSpec)
                 .cookie("token", authToken.getToken())
                 .when()
-                .get("/booking/"+responseBookingIvanov.getBookingid())
+                .get("/booking/" + responseBookingIvanov.getBookingid())
                 .then()
                 .spec(responseSpec)
                 .log().body()
@@ -141,7 +141,7 @@ public class ApiTests {
                 .spec(requestSpec)
                 .cookie("token", authToken.getToken())
                 .when()
-                .delete("/booking/"+responseBookingIvanov.getBookingid())
+                .delete("/booking/" + responseBookingIvanov.getBookingid())
                 .then()
                 .log().body()
                 .log().status()
@@ -151,7 +151,7 @@ public class ApiTests {
                 .spec(requestSpec)
                 .cookie("token", authToken.getToken())
                 .when()
-                .get("/booking/"+responseBookingIvanov.getBookingid())
+                .get("/booking/" + responseBookingIvanov.getBookingid())
                 .then()
                 .log().body()
                 .log().status()
